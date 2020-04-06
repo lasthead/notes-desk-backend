@@ -30,7 +30,6 @@ class NotesController extends Controller
         $item->text = $request->text;
         $item->completed = $request->completed ?? false;
         $item->save();
-        //return Note::;
     }
     public function updateItem(Request $request) {
         $request->validate([
@@ -44,7 +43,6 @@ class NotesController extends Controller
         $item->text = $request->text;
         $item->completed = $request->completed ?? false;
         $item->save();
-        //return Note::;
     }
     public function removeItem(Request $request) {
         $request->validate([
@@ -52,6 +50,5 @@ class NotesController extends Controller
         ]);
         $item = Note::find($request->id);
         $item->delete();
-        //return Note::;
     }
 }
