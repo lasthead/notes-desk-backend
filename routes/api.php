@@ -29,8 +29,6 @@ Route::group([
     });
 });
 
-
-
 Route::group([
     'middleware' => 'auth:api'
 ], function() {

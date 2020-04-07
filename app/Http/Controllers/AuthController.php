@@ -51,8 +51,7 @@ class AuthController extends Controller
     {
         $request->validate([
             'email' => 'required|string|email',
-            'password' => 'required|string',
-            'remember_me' => 'boolean'
+            'password' => 'required|string'
         ]);
         $credentials = request(['email', 'password']);
         if(!Auth::attempt($credentials))
@@ -67,6 +66,7 @@ class AuthController extends Controller
         $token->save();
         return response()->json([
             'access_token' => $tokenResult->accessToken,
+            'name' => $request->user()->name,
             'token_type' => 'Bearer',
             'expires_at' => Carbon::parse(
                 $tokenResult->token->expires_at
