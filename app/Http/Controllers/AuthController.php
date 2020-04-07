@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use App\User;
+use Illuminate\Support\Str;
 use Symfony\Component\HttpFoundation\Response;
 use Laravel\Passport\Client;
 
@@ -21,6 +22,14 @@ class AuthController extends Controller
      */
     public function signup(Request $request)
     {
+        $acceptHeader = $request->headers->get('Accept');
+        if (!Str::contains($acceptHeader, 'application/json')) {
+            $newAcceptHeader = 'application/json';
+            if ($acceptHeader) {
+                $newAcceptHeader .= "/$acceptHeader";
+            }
+            $request->headers->set('Accept', $newAcceptHeader);
+        }
         $request->validate([
             'name' => 'required|string',
             'email' => 'required|string|email|unique:users',
@@ -49,6 +58,14 @@ class AuthController extends Controller
      */
     public function login(Request $request)
     {
+        $acceptHeader = $request->headers->get('Accept');
+        if (!Str::contains($acceptHeader, 'application/json')) {
+            $newAcceptHeader = 'application/json';
+            if ($acceptHeader) {
+                $newAcceptHeader .= "/$acceptHeader";
+            }
+            $request->headers->set('Accept', $newAcceptHeader);
+        }
         $request->validate([
             'email' => 'required|string|email',
             'password' => 'required|string'
