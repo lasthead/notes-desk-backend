@@ -1,4 +1,6 @@
 <?php
+header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
