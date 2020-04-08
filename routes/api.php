@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::group([
     'prefix' => 'auth'
 ], function () {
-    Route::post('login', 'AuthController@login');
+    Route::post('login', 'AuthController@login')->name('login');
     Route::post('signup', 'AuthController@signup');
     Route::post('create', 'AuthController@create');
 
@@ -32,9 +32,9 @@ Route::group([
     'middleware' => 'auth:api'
 ], function() {
     Route::get('get_items_list', 'NotesController@getList');
-    Route::get('get_item', 'NotesController@getItemById');
     Route::post('create_item', 'NotesController@createItem');
     Route::put('update_item', 'NotesController@updateItem');
     Route::delete('remove_item', 'NotesController@removeItem');
 });
 
+Route::get('get_item', 'NotesController@getItemById');
