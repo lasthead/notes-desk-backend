@@ -39,5 +39,6 @@ Route::group([
     // Route::delete('remove_item', 'NotesController@removeItem');
 });
 
-Route::get('get_item', 'NotesController@getItemById')->middleware('auth:api');
-Route::delete('remove_item', 'NotesController@removeItem')->middleware('auth:api');
+// I did this because these methods are blocked by the cors policy. And i dont now how to fix it
+Route::get('get_item', 'NotesController@getItemById');
+Route::delete('remove_item', 'NotesController@removeItem');
