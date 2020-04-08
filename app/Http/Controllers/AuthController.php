@@ -20,7 +20,7 @@ class AuthController extends Controller
      * @param  [string] password_confirmation
      * @return [string] message
      */
-    public function signup(Request $request)
+    public function create(Request $request)
     {
         $acceptHeader = $request->headers->get('Accept');
         if (!Str::contains($acceptHeader, 'application/json')) {
@@ -31,9 +31,8 @@ class AuthController extends Controller
             $request->headers->set('Accept', $newAcceptHeader);
         }
         $request->validate([
-            'name' => 'required|string',
             'email' => 'required|string|email|unique:users',
-            'password' => 'required|string|confirmed'
+            'password' => 'required|string'
         ]);
         $user = new User([
             'name' => $request->email,
@@ -41,8 +40,15 @@ class AuthController extends Controller
             'password' => bcrypt($request->password)
         ]);
         $user->save();
+        $tokenResult = $user->createToken('Personal Access Token');
         return response()->json([
-            'message' => 'Successfully created user!'
+            'message' => 'Successfully created user!',
+            'name' => $user->name,
+            'access_token' => $tokenResult->accessToken,
+            'token_type' => 'Bearer',
+            'expires_at' => Carbon::parse(
+                $tokenResult->token->expires_at
+            )->toDateTimeString()
         ], 201);
     }
 
