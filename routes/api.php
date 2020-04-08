@@ -1,8 +1,4 @@
 <?php
-header("Access-Control-Allow-Origin: *");
-header('Access-Control-Allow-Methods: POST,GET,PUT,PATCH,OPTIONS,DELETE');
-header('Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept');
-
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -41,3 +37,4 @@ Route::group([
     Route::put('update_item', 'NotesController@updateItem');
     Route::delete('remove_item', 'NotesController@removeItem');
 });
+

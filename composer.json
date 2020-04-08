@@ -30,7 +30,7 @@
     },
     "extra": {
         "laravel": {
-            "dont-discover": ["fruitcake/laravel-cors"]
+            "dont-discover": []
         }
     },
     "autoload": {
