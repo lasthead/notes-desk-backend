@@ -13,6 +13,9 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+header("Access-Control-Allow-Origin: *");
+header('Access-Control-Allow-Methods: POST,GET,PUT,PATCH,OPTIONS');
+header('Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept');
 
 Route::group([
     'prefix' => 'auth'
