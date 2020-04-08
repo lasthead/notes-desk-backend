@@ -32,9 +32,9 @@ Route::group([
     'middleware' => 'auth:api'
 ], function() {
     Route::get('get_items_list', 'NotesController@getList');
+    Route::get('get_item', 'NotesController@getItemById');
     Route::post('create_item', 'NotesController@createItem');
     Route::put('update_item', 'NotesController@updateItem');
     Route::delete('remove_item', 'NotesController@removeItem');
 });
 
-Route::get('get_item', 'NotesController@getItemById');
