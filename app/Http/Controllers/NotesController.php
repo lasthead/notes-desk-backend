@@ -30,6 +30,7 @@ class NotesController extends Controller
         $item->text = $request->text;
         $item->completed = $request->completed ?? false;
         $item->save();
+        return $item;
     }
     public function updateItem(Request $request) {
         $request->validate([
