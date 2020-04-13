@@ -18,4 +18,10 @@ class Note extends Model
         'created_at',
         'updated_at'
     ];
+
+    public function scopeUser($query, $user)
+    {
+        $query->where('user', '=', $user);
+        return $query;
+    }
 }

@@ -8,7 +8,8 @@ use App\Note;
 class NotesController extends Controller
 {
     public function getList(Request $request) {
-        return Note::all();
+        $userId = $request->user()->id;
+        return $filteredItems = Note::where('user', '=', $userId)->get();
     }
     public function getItemById(Request $request) {
         $request->validate([
@@ -26,7 +27,7 @@ class NotesController extends Controller
         ]);
         $item = new Note();
         $item->name = $request->name;
-        $item->user = $request->user ?? 1;
+        $item->user = $request->user()->id;
         $item->text = $request->text;
         $item->completed = $request->completed ?? false;
         $item->save();
